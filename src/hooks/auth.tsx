@@ -39,28 +39,6 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>({} as AuthState);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function loadStoredData(): Promise<void> {
-      const [token, user] = await AsyncStorage.multiGet([
-        '@GoBarber:token',
-        '@GoBarber:user',
-      ]);
-
-      if (token[1] && user[1]) {
-        api.defaults.headers.authorization = `Bearer ${token[1]}`;
-
-        setData({
-          token: token[1],
-          user: JSON.parse(user[1]),
-        });
-      }
-
-      setLoading(false);
-    }
-
-    loadStoredData();
-  }, []);
-
   const signIn = useCallback(async ({ email, password }) => {
     const response = await api.post('sessions', {
       email,
@@ -96,6 +74,36 @@ export const AuthProvider: React.FC = ({ children }) => {
     },
     [data.token],
   );
+
+  useEffect(() => {
+    async function loadStoredData(): Promise<void> {
+      const [token, user] = await AsyncStorage.multiGet([
+        '@GoBarber:token',
+        '@GoBarber:user',
+      ]);
+
+      if (token[1] && user[1]) {
+        api.defaults.headers.authorization = `Bearer ${token[1]}`;
+
+        try {
+          await api.get('/profile');
+
+          setData({
+            token: token[1],
+            user: JSON.parse(user[1]),
+          });
+        } catch (err) {
+          if (err.message.includes('401')) {
+            await signOut();
+          }
+        }
+      }
+
+      setLoading(false);
+    }
+
+    loadStoredData();
+  }, [signOut]);
 
   return (
     <AuthContext.Provider
