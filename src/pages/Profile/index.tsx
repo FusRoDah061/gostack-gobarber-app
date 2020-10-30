@@ -30,6 +30,8 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import api from '../../services/api';
 import { useAuth } from '../../hooks/auth';
 
+import defaultAvatar from '../../assets/default_avatar.jpg';
+
 interface ProfileFormData {
   name: string;
   email: string;

@@ -1,6 +1,7 @@
 import { StatusBar, FlatList } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
+import AvatarImage from '../../components/AvatarImage';
 import { Provider } from './index';
 
 interface ProviderContainerProps {
@@ -44,7 +45,7 @@ export const HeaderTitle = styled.Text`
   text-align: center;
 `;
 
-export const UserAvatar = styled.Image`
+export const UserAvatar = styled(AvatarImage)`
   width: 56px;
   height: 56px;
   border-radius: 28px;
@@ -74,7 +75,7 @@ export const ProviderContainer = styled(RectButton)<ProviderContainerProps>`
   border-radius: 10px;
 `;
 
-export const ProviderAvatar = styled.Image`
+export const ProviderAvatar = styled(AvatarImage)`
   width: 32px;
   height: 32px;
   border-radius: 16px;

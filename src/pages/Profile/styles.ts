@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { Platform, StatusBar } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
+import AvatarImage from '../../components/AvatarImage';
 
 export const Container = styled.View`
   flex: 1;
@@ -45,7 +46,7 @@ export const UserAvatarButton = styled(RectButton)`
   justify-content: center;
 `;
 
-export const UserAvatar = styled.Image`
+export const UserAvatar = styled(AvatarImage)`
   width: 186px;
   height: 186px;
   border-radius: 98px;

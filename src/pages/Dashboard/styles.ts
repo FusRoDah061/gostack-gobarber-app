@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 import { FlatList, StatusBar } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { Provider } from './index';
+import AvatarImage from '../../components/AvatarImage';
 
 export const Container = styled.View`
   flex: 1;
@@ -31,7 +32,7 @@ export const UserName = styled.Text`
 
 export const ProfileButton = styled.TouchableOpacity``;
 
-export const UserAvatar = styled.Image`
+export const UserAvatar = styled(AvatarImage)`
   width: 56px;
   height: 56px;
   border-radius: 28px;
@@ -57,7 +58,7 @@ export const ProviderContainer = styled(RectButton)`
   align-items: center;
 `;
 
-export const ProviderAvatar = styled.Image`
+export const ProviderAvatar = styled(AvatarImage)`
   width: 72px;
   height: 72px;
   border-radius: 36px;

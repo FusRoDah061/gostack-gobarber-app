@@ -21,6 +21,8 @@ import {
   ProviderMetaText,
 } from './styles';
 
+import defaultAvatar from '../../assets/default_avatar.jpg';
+
 export interface Provider {
   id: string;
   name: string;

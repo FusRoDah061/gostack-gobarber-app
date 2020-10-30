@@ -32,6 +32,8 @@ import {
 import { useAuth } from '../../hooks/auth';
 import api from '../../services/api';
 
+import defaultAvatar from '../../assets/default_avatar.jpg';
+
 interface RouteParams {
   providerId: string;
 }
