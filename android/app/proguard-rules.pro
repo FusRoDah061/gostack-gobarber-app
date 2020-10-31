@@ -9,4 +9,4 @@
 
 # Add any project specific keep options here:
 
--keep class com.appgobarber.BuildConfig { *; }
+-keep class com.fusrodah061.appgobarber.BuildConfig { *; }

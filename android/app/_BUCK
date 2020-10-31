@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.appgobarber",
+    package = "com.fusrodah061.appgobarber",
 )
 
 android_resource(
     name = "res",
-    package = "com.appgobarber",
+    package = "com.fusrodah061.appgobarber",
     res = "src/main/res",
 )
 

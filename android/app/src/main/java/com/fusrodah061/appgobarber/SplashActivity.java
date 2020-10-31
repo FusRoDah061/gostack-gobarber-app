@@ -1,4 +1,4 @@
-package com.appgobarber;
+package com.fusrodah061.appgobarber;
 
 import android.content.Intent;
 import android.os.Bundle;
