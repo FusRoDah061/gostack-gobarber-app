@@ -86,7 +86,7 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    enableHermes: true,  // clean and rebuild if changing
+    enableHermes: false,  // clean and rebuild if changing
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -159,6 +159,14 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        releaseStaging {
+            if (project.hasProperty('ANDROID_UPLOAD_STORE_FILE')) {
+                storeFile file(ANDROID_UPLOAD_STORE_FILE)
+                storePassword ANDROID_UPLOAD_STORE_PASSWORD
+                keyAlias ANDROID_UPLOAD_KEY_ALIAS
+                keyPassword ANDROID_UPLOAD_KEY_PASSWORD
+            }
+        }
         release {
             if (project.hasProperty('ANDROID_UPLOAD_STORE_FILE')) {
                 storeFile file(ANDROID_UPLOAD_STORE_FILE)
@@ -175,6 +183,8 @@ android {
         }
 
         releaseStaging {
+            // Caso precise gerar uma build local, descomente essa linha
+            // signingConfig signingConfigs.releaseStaging
             resValue "string", "CodePushDeploymentKey", '"hoFw9bHq89zGmwujTagDhlfr9pNoivyjKTzx7"'
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
