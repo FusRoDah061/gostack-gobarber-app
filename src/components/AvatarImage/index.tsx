@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
-import { Image, ImageProps } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, ImageProps, ImageURISource } from 'react-native';
 
 import defaultAvatar from '../../assets/default_avatar.png';
 
-type AvatarImageProps = Omit<Omit<ImageProps, 'defaultSource'>, 'onError'>;
+type AvatarImageProps = Omit<Omit<ImageProps, 'defaultSource'>, 'onError'> & {
+  source: ImageURISource;
+};
 
 const AvatarImage: React.FC<AvatarImageProps> = ({ source, ...rest }) => {
   const [useDefaultAvatar, setUseDefaultAvatar] = useState(false);
+
+  useEffect(() => {
+    if (typeof source === 'object') {
+      setUseDefaultAvatar(!source.uri);
+      return;
+    }
+
+    setUseDefaultAvatar(false);
+  }, [source]);
 
   return (
     <Image
